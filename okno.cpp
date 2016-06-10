@@ -9,6 +9,8 @@ okno::okno(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::okno)
 {
+    //ui->menuBar()->setNativeMenuBar(false);
+
     ui->setupUi(this);
     ended=true;
     Prev=NULL;
@@ -83,7 +85,7 @@ void okno::on_actionNew_Game_2_triggered()
         int chybejiciObraz=0;
         for(int i=0; i<velikostPole*velikostPole/2; i++)
         {
-            QFileInfo f("obrazky/"+QString::number(i)+".png");
+            QFileInfo f(QString::number(i)+".png");
             if(!f.isFile())
             {
                QMessageBox::information(this,tr("Ve složce /obrazky chybí soubor"),"Můžete pokračovat, ale doporučujeme tuto chybu opravit opětovnou instalací programu, případně nahrajte do složky /obrazky chybějící .png soubor.");
@@ -129,7 +131,7 @@ void okno::click()
             index++;
         }
         //button->setText(QString::number(hra->getValue(index)));
-        button->setIcon(QIcon("obrazky/"+QString::number(hra->getValue(index))+".png"));
+        button->setIcon(QIcon(QString::number(hra->getValue(index))+".png"));
         button->setIconSize(button->size());
         button->setChecked(true);
         loop.processEvents(QEventLoop::AllEvents,1000);
@@ -205,7 +207,7 @@ void okno::pcClick()
             index++;
         }
         //button->setText(QString::number(hra->getValue(index)));
-        button->setIcon(QIcon("obrazky/"+QString::number(hra->getValue(index))+".png"));
+        button->setIcon(QIcon(QString::number(hra->getValue(index))+".png"));
         button->setIconSize(button->size());
         button->setChecked(true);
         oponent->otocenaKarta(index,hra->getValue(index));
